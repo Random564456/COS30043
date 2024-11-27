@@ -15,7 +15,7 @@ const app = Vue.createApp({
     checkGuess(e) {
       if (this.activeAttempt === false) {
         this.activeAttempt = true;
-        this.randomInt = this.generateRandomInt();
+        this.randomInt = Math.floor(Math.random() * 101);
       } else if (this.guess === null) return;
 
       if (this.randomInt === this.guess) {
@@ -32,9 +32,6 @@ const app = Vue.createApp({
     startOver() {
         this.guess = null;
         this.randomInt = null;
-    },
-    generateRandomInt() {
-      return Math.floor(Math.random() * 101);
     },
   },
 });
