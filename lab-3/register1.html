@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,48 +20,97 @@
         <h2>Login Information</h2>
         <span class="mt-2">
           <label class="px-1" for="username">Enter username: </label>
-          <input type="text" name="" id="username" />
+          <input
+            type="text"
+            name=""
+            id="username"
+            v-model="inputData.username"
+          />
         </span>
         <span class="mt-2">
           <label class="px-1" for="password">Enter password: </label>
-          <input type="text" name="" id="password" />
+          <input
+            type="password"
+            name=""
+            id="password"
+            v-model="inputData.password"
+          />
         </span>
         <span class="mt-2">
-          <label class="px-1" for="password">Re-enter password: </label>
-          <input type="text" name="" id="password" />
-          Password does not match
+          <label class="px-1" for="rePassword">Re-enter password: </label>
+          <input
+            type="password"
+            name=""
+            id="rePassword"
+            v-model="inputData.rePassword"
+          />
+          <span v-if="inputData.password!== inputData.rePassword"
+            >Passwords do not match</span
+          >
         </span>
       </div>
       <div class="row mt-5">
         <h2>Phone Information</h2>
         <div class="col-5 mt-2">
           <h4>Operating System</h4>
-          <input class="mx-1" type="radio" name="" id="Android" />
+          <input
+            class="mx-1"
+            checked="checked"
+            type="radio"
+            name=""
+            id="Android"
+            value="Android"
+            v-model="inputData.os"
+          />
           <label for="Android">Android</label>
-          <input class="mx-1" type="radio" name="" id="IOS" />
+          <input
+            class="mx-1"
+            type="radio"
+            name=""
+            id="IOS"
+            value="IOS"
+            v-model="inputData.os"
+          />
           <label for="IOS">IOS</label>
-          <input class="mx-1" type="radio" name="" id="Windows" />
+          <input
+            class="mx-1"
+            type="radio"
+            name=""
+            id="Windows"
+            value="Windows"
+            v-model="inputData.os"
+          />
           <label for="Windows">Windows</label>
         </div>
         <div class="col-5 mt-2">
           <h4>Model</h4>
           <label for="PhoneModel">Android</label>
-          <select name="PhoneModel" id="PhoneModel">
+          <select name="PhoneModel" id="PhoneModel" v-model="inputData.model">
             <option value=""></option>
-            <option v-for="data in dataset" v-model="" default>{{data.model}}</option>
+            <option v-for="phone in showPhone" default>{{phone.model}}</option>
           </select>
         </div>
       </div>
       <div class="row mt-5">
         <h2>Summary</h2>
+        <ul>
+          <li>Username: {{inputData.username}}</li>
+          <li>OS: {{inputData.os}}</li>
+          <li>Phone: {{inputData.model}}</li>
+        </ul>
       </div>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
       const app = Vue.createApp({
         data() {
+          const username = "";
+          const password = "";
+          const rePassword = "";
+          const os = "Android";
+          const model = "";
           return {
-            inputData: { username: "", password: "", rePassword: "", os: "", model: ""},
+            inputData: { username, password, rePassword, os, model },
             dataset: [
               { model: "HTC 10", os: "Android" },
               { model: "Nokia 6", os: "Android" },
@@ -77,6 +126,13 @@
               { model: "IDD VIOS Non Android", os: "Windows" },
             ],
           };
+        },
+        computed: {
+          showPhone: function () {
+            return this.dataset.filter((data) =>
+              data.os.toLowerCase().match(this.inputData.os.toLowerCase())
+            );
+          },
         },
       });
 
