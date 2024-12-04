@@ -12,7 +12,7 @@ app.component(
                 <span><strong>Enter number from 1 to 99</strong><input v-model="numVar" class="mx-2" type="text"></span>
               </div>
               <div class="row">
-                <p>{{numVar | num2roman}}</p>
+                <p>{{num2roman(numVar)}}</p>
               </div>
             </div>`,
     data: function () {
@@ -21,7 +21,7 @@ app.component(
       };
     },
 
-    filters: {
+    methods: {
       num2roman: function (myNum) {
         // your code here
         const num = parseInt(myNum, 10);
