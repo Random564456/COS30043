@@ -171,7 +171,7 @@ const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
   routes: [
     {
-      path: "/name-test",
+      path: "/",
       component: NameTest,
     },
     {
