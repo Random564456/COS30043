@@ -83,45 +83,43 @@ const Dashboard = (
     {
         template: `
          <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Code</th>
-              <th scope="col">Description</th>
-              <th scope="col">cp</th>
-              <th scope="col">Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="unit in paginateClass" :key="unit.code">
-              <td>{{unit.code}}</td>
-              <td>{{unit.desc}}</td>
-              <td>{{unit.cp}}</td>
-              <td>{{unit.type}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li class="page-item" :class="{ disabled: currentPage <= 1 }">
-            <a class="page-link" href="#" @click.prevent="prevPage">&laquo;</a>
-          </li>
-          <li
-            v-for="number in pageCount"
-            :key="number"
-            class="page-item"
-            :class="{ active: number === currentPage }"
-          >
-            <a class="page-link" href="#" @click.prevent="changePage(number)"
-              >{{ number }}</a
-            >
-          </li>
-          <li class="page-item" :class="{ disabled: currentPage >= pageCount }">
-            <a class="page-link" href="#" @click.prevent="nextPage">&raquo;</a>
-          </li>
-        </ul>
-      </nav>`
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">cp</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="unit in paginateClass" :key="unit.code">
+                        <td>{{unit.code}}</td>
+                        <td>{{unit.desc}}</td>
+                        <td>{{unit.cp}}</td>
+                        <td>{{unit.type}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" :class="{ disabled: currentPage <= 1 }">
+                    <a class="page-link" href="#" @click.prevent="prevPage">&laquo;</a>
+                </li>
+                <li
+                    v-for="number in pageCount"
+                    :key="number"
+                    class="page-item"
+                    :class="{ active: number === currentPage }"
+                >
+                    <a class="page-link" href="#" @click.prevent="changePage(number)">{{ number }}</a>
+                </li>
+                <li class="page-item" :class="{ disabled: currentPage >= pageCount }">
+                    <a class="page-link" href="#" @click.prevent="nextPage">&raquo;</a>
+                </li>
+            </ul>
+      </nav>`,
         data() {
             return {
                 perPage: 3,
